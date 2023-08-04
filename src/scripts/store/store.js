@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 
-export default store = createStore({
+const store = createStore({
     state () {
         return {
             setup: "",
@@ -9,8 +9,8 @@ export default store = createStore({
     },
     mutations: {
         setData (state, data) {
-            state.setup = data.setup;
-            state.punchline = data.punchl;
+            state.setup = data.data.setup;
+            state.punchline = data.data.delivery;
         },
     },
     actions: {
@@ -19,3 +19,5 @@ export default store = createStore({
         },
     },
 })
+
+export default store;

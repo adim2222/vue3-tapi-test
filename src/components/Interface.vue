@@ -3,13 +3,21 @@ import store from "../scripts/store/store.js"
 import getData from "../scripts/axios/axios.js"
 import { ref, computed } from "vue";
 
+let showPunchline = computed({
+    get() {
+        return store.state.showPunchline
+    },
+    set(value) {
+        store.commit('punchlineToggle', value);
+    }
+})
+
 const newJoke = () => {
     getData();
-    store.commit('punchlineToggle');
+    store.commit('punchlineToggle', false);
 };
-const showPunchline = computed(() => {
-    return store.state.showPunchline;
-});
+
+
 </script>
 
 <template>
@@ -24,7 +32,7 @@ const showPunchline = computed(() => {
                 </template>
             </Suspense>
         </div>
-        <button @click="store.dispatch('punchlineToggle')" class="reveal-button">?</button>
+        <button @click="showPunchline = true, console.log(showPunchline)" class="reveal-button">?</button>
         <div v-if="showPunchline" class="punchline">{{ store.state.punchline }}</div>
         <button v-if="showPunchline" @click="newJoke" class="next-button">Next joke!</button>
     </div>

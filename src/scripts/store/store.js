@@ -13,16 +13,13 @@ const store = createStore({
             state.setup = data.data.setup;
             state.punchline = data.data.delivery;
         },
-        punchlineToggle (state) {
-            state.showPunchline = !state.showPunchline;
+        punchlineToggle (state, value) {
+            state.showPunchline = value;
         },
     },
     actions: {
         getData (state, data) {
             state.commit('setData', data);
-        },
-        punchlineToggle (state) {
-            state.commit('punchlineToggle');
         },
     },
 })

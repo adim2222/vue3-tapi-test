@@ -5,6 +5,7 @@ const store = createStore({
         return {
             setup: "",
             punchline: "",
+            showPunchline: false,
         }
     },
     mutations: {
@@ -12,10 +13,16 @@ const store = createStore({
             state.setup = data.data.setup;
             state.punchline = data.data.delivery;
         },
+        punchlineToggle (state) {
+            state.showPunchline = !state.showPunchline;
+        },
     },
     actions: {
         getData (state, data) {
             state.commit('setData', data);
+        },
+        punchlineToggle (state) {
+            state.commit('punchlineToggle');
         },
     },
 })
